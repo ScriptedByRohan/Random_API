@@ -3,7 +3,7 @@ import bodyParser from "body-parser";
 import axios from "axios";
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -55,6 +55,6 @@ app.post("/okay", async (req, res) => {
 // Pass an error to the index.ejs to tell the user:
 // "No activities that match your criteria."
 
-app.listen(port, () => {
+app.listen(port, "0.0.0.0", () => {
   console.log(`Server running on port: ${port}`);
 });
