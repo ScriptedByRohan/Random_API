@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/styles/main.css">
+  <title>I'm Bored — Find Your Next Adventure</title>
+</head>
+
+<body>
+  <main class="container">
+
+    <header class="hero">
+      <div class="logo">✦ DO SOMETHING</div>
+
+      <h1>
+        Bored?<br>
+        <span>Let's fix that.</span>
+      </h1>
+
+      <p class="subtitle">
+        Discover something fun, learn something new,
+        and make today a little more interesting.
+      </p>
+    </header>
+
+    <section class="search-panel">
+      <form action="/okay" id="form" class="form" method="POST">
+
+        <div class="field">
+          <label for="type">YOUR VIBE</label>
+          <select name="type" id="type" class="form-select">
+            <option value="">🎲 Random type</option>
+            <option value="education">📚 Education</option>
+            <option value="charity">💚 Charity</option>
+            <option value="recreational">🎮 Recreational</option>
+            <option value="relaxation">🌿 Relaxation</option>
+            <option value="busywork">✨ Busywork</option>
+            <option value="social">🫶 Social</option>
+            <option value="diy">🛠️ DIY</option>
+            <option value="music">🎵 Music</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="participants">WHO'S JOINING?</label>
+          <select name="participants" id="participants"
+            class="form-select">
+            <option value="">👥 Any group size</option>
+            <option value="1">🙋 Just me</option>
+            <option value="2">👫 Two people</option>
+            <option value="3">👨‍👩‍👦 Three people</option>
+            <option value="4">👨‍👩‍👧‍👦 Four people</option>
+          </select>
+        </div>
+
+        <button type="submit" class="form-submit">
+          Find something fun <span>↗</span>
+        </button>
+
+      </form>
+    </section>
+
+    <section id="cards" class="cards">
+
+      <% if (locals.data) { %>
+        <article class="card-item">
+          <div class="card-top">
+            <span class="card-emoji">✦</span>
+            <span class="card-label">YOUR NEXT ADVENTURE</span>
+          </div>
+
+          <h2 class="card-activity">
+            <%= data.activity %>
+          </h2>
+
+          <div class="card-info">
+            <span class="card-type">
+              ✨ <%= data.type %>
+            </span>
+
+            <span class="card-participants">
+              👥 <%= data.participants %>
+              <%= Number(data.participants) === 1
+                ? "participant" : "participants" %>
+            </span>
+          </div>
+
+          <p class="card-footer">
+            Small plans. Great memories. 💜
+          </p>
+        </article>
+      <% } %>
+
+      <% if (locals.error) { %>
+        <div id="tag-error" class="tag-error" role="alert">
+          <span class="error-icon">!</span>
+          <div>
+            <h3>No adventures found</h3>
+            <p><%= error %>. Try different filters!</p>
+          </div>
+        </div>
+      <% } %>
+
+      <% if (!locals.data && !locals.error) { %>
+        <div class="empty-state">
+          <div class="empty-icon">🪄</div>
+          <h2>Your next adventure awaits</h2>
+          <p>Choose your vibe above and let the fun begin.</p>
+        </div>
+      <% } %>
+
+    </section>
+
+    <footer>
+      MADE FOR YOUR MOMENTS OF BOREDOM <span>♥</span>
+    </footer>
+
+  </main>
+</body>
+</html>
