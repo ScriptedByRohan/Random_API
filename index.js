@@ -25,7 +25,7 @@ app.get("/", async (req, res) => {
   }
 });
 
-app.post("/okay", async (req, res) => {
+app.post("/", async (req, res) => {
   try {
     console.log(req.body);
     const type = req.body.type;
